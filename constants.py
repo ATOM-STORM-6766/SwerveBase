@@ -8,7 +8,7 @@ from wpimath.geometry import Rotation2d, Translation2d
 from wpimath.kinematics import SwerveDrive4Kinematics
 from wpimath import units
 
-from lib.pid import PIDConstants
+from lib.pid import ScreamPIDConstants
 from lib.util import COTSFalconSwerveConstants
 
 LOOP_TIME_SEC = 0.02
@@ -67,12 +67,12 @@ class SwerveConstants:
     )
 
     # Swerve Heading Correction
-    HEADING_CONSTANTS = PIDConstants(0.1, 0.0, 0.001)
+    HEADING_CONSTANTS = ScreamPIDConstants(0.1, 0.0, 0.001)
     CORRECTION_TIME_THRESHOLD = 0.2
 
     # PathPlanner Constants
-    PATH_TRANSLATION_CONSTANTS = PIDConstants(25, 0.0, 0.0)  # TODO ROBOT SPECIFIC
-    PATH_ROTATION_CONSTANTS = PIDConstants(45, 0.0, 0.0)
+    PATH_TRANSLATION_CONSTANTS = ScreamPIDConstants(25, 0.0, 0.0)  # TODO ROBOT SPECIFIC
+    PATH_ROTATION_CONSTANTS = ScreamPIDConstants(45, 0.0, 0.0)
 
     PATH_FOLLOWER_CONFIG = HolonomicPathFollowerConfig(
         PATH_TRANSLATION_CONSTANTS.toPathPlannerPIDConstants(),
@@ -110,7 +110,7 @@ class DriveConstants:
     KI = 0.0
     KD = 0.0
     KF = 0.0
-    PID_CONSTANTS = PIDConstants(KP, KI, KD, KF)
+    PID_CONSTANTS = ScreamPIDConstants(KP, KI, KD, KF)
 
     # Feedforward Constants
     KS = 0.32  # TODO ROBOT SPECIFIC
@@ -141,7 +141,7 @@ class SteerConstants:
     KI = SwerveConstants.MODULE_TYPE.steerKI
     KD = SwerveConstants.MODULE_TYPE.steerKD
     KF = SwerveConstants.MODULE_TYPE.steerKF
-    PID_CONSTANTS = PIDConstants(KP, KI, KD, KF)
+    PID_CONSTANTS = ScreamPIDConstants(KP, KI, KD, KF)
 
 
 class ModuleConstants:
