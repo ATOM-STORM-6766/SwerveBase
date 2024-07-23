@@ -1,3 +1,5 @@
+from typing import Callable, List
+
 from wpimath.geometry import Rotation2d, Translation2d
 from wpilib import Timer
 
@@ -5,23 +7,23 @@ from commands2 import Command
 
 from constants import SwerveConstants
 from controlboard import Controlboard
-from subsystem.swerve import Swerve
+from subsystem.swerve.swerve import Swerve
 
 
 class TeleopSwerver(Command):
     swerve: Swerve
-    translationSup: list[callable[[], float]]
-    rotationSup: callable[[], float]
-    fieldRelativeSup: callable[[], bool]
+    translationSup: List[Callable[[], float]]
+    rotationSup: Callable[[], float]
+    fieldRelativeSup: Callable[[], bool]
     lastAngle: Rotation2d
     correctionTimer = Timer()
 
     def __init__(
         self,
-        swerve:Swerve,
-        translationSup: list[callable[[], float]],
-        rotationSup: callable[[], float],
-        fieldRelativeSup: callable[[], bool],
+        swerve: Swerve,
+        translationSup: list[Callable[[], float]],
+        rotationSup: Callable[[], float],
+        fieldRelativeSup: Callable[[], bool],
     ):
         """
         Constructs a TeleopSwerve command with the given parameters.

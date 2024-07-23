@@ -6,7 +6,7 @@ from commands2 import Command, InstantCommand, PrintCommand
 
 from commands.swerve import TeleopSwerver
 from controlboard import Controlboard
-from subsystem.swerve import Swerve
+from subsystem.swerve.swerve import Swerve
 
 
 class RobotContainer:
@@ -33,9 +33,9 @@ class RobotContainer:
         self.m_swerve.setDefaultCommand(
             TeleopSwerver(
                 self.m_swerve,
-                Controlboard.getTranslation,
-                Controlboard.getRotation,
-                Controlboard.getFieldCentric,
+                Controlboard.getTranslation(),
+                Controlboard.getRotation(),
+                Controlboard.getFieldCentric(),
             )
         )
 

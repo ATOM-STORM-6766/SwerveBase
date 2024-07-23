@@ -31,7 +31,8 @@ class COTSFalconSwerveConstants:
         self.steerMotorInvert = angleMotorInvert
         self.CANcoderInvert = CANcoderInvert
 
-    def SDSMK4i(self, driveGearRatio) -> "COTSFalconSwerveConstants":
+    @staticmethod
+    def SDSMK4i(driveGearRatio) -> "COTSFalconSwerveConstants":
         wheelDiameter = 4.0 * 0.0254  # inches to meters
 
         # 21.42 : 1

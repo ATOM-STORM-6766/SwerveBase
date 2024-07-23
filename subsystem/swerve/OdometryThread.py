@@ -7,7 +7,7 @@ from wpimath.filter import LinearFilter
 from wpimath.geometry import Rotation2d
 from wpimath.kinematics import SwerveDrive4Odometry, SwerveModulePosition
 
-from subsystem.swerve import SwerveModule
+from subsystem.swerve.swerveModule import SwerveModule
 
 
 class OdometryThread(Thread):
@@ -22,7 +22,7 @@ class OdometryThread(Thread):
     averageLoopTime = 0.0
 
     m_modules: list[SwerveModule]
-    m_modulePositions = list[SwerveModulePosition](4)
+    m_modulePositions = [SwerveModulePosition() for _ in range(4)]
     m_odometry: SwerveDrive4Odometry
     m_pigeon: Pigeon2
 
@@ -33,13 +33,13 @@ class OdometryThread(Thread):
         pigeon2: Pigeon2,
         modCount: int,
     ):
-        super.__init__()
+        super().__init__(daemon=True)
         # 4 signals for each module + 2 for Pigeon2
         self.ModuleCount = modCount
         self.m_modules = modules
         self.m_odometry = odometry
         self.m_pigeon2 = pigeon2
-        self.m_allSignals = list[BaseStatusSignal](4 * modCount + 2)
+        self.m_allSignals = [BaseStatusSignal] * ((self.ModuleCount * 4) + 2)
 
         for i in range(self.ModuleCount):
             signals = self.m_modules[i].getSignals()

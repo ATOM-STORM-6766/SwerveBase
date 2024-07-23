@@ -16,6 +16,7 @@ class Robot(TimedRobot):
         # Instantiate our RobotContainer. This will perform all our button bindings,
         # and put our autonomous chooser on the dashboard.
         self.robotContainer = RobotContainer()
+        self.autonomousCommand = None
 
     def robotPeriodic(self) -> None:
         CommandScheduler.getInstance().run()

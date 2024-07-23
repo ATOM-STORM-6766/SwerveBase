@@ -1,2 +1,2 @@
-from Util import *
-from COTSFalconSwerveConstants import *
+from .Util import Util
+from .COTSFalconSwerveConstants import COTSFalconSwerveConstants

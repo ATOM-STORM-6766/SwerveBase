@@ -1,5 +1,3 @@
-from typing import overload
-
 from phoenix6.hardware import Pigeon2
 from phoenix6.signals import NeutralModeValue
 
@@ -26,10 +24,8 @@ from constants import Ports
 from constants import SwerveConstants
 from constants import ModuleConstants
 
-from robotContainer import RobotContainer
-
-from subsystem.swerve import SwerveModule
-from subsystem.swerve import OdometryThread
+from subsystem.swerve.swerveModule import SwerveModule
+from subsystem.swerve.odometryThread import OdometryThread
 
 
 class Swerve(Subsystem):
@@ -100,7 +96,7 @@ class Swerve(Subsystem):
             self.robotRelativeSpeeds,
             self.setChassisSpeeds,
             SwerveConstants.PATH_FOLLOWER_CONFIG,
-            lambda: RobotContainer.getAlliance() != DriverStation.Alliance.kBlue,
+            lambda: DriverStation.getAlliance() != DriverStation.Alliance.kBlue,
             self,
         )
 
@@ -141,7 +137,7 @@ class Swerve(Subsystem):
         Returns:
         - The array of `SwerveModulePosition` objects.
         """
-        positions = list(4)
+        positions = [SwerveModulePosition() for _ in range(4)]
         for module in self.m_swerveModules:
             positions[module.getModuleNumber()] = module.getPosition(True)
         return positions
@@ -166,9 +162,9 @@ class Swerve(Subsystem):
         - The yaw rotation as a `Rotation2d`.
         """
         return (
-            Rotation2d.fromDegrees(self.m_pigeon2.get_yaw())
+            Rotation2d.fromDegrees(self.m_pigeon2.get_yaw().value)
             if not SwerveConstants.GYRO_INVERT
-            else Rotation2d.fromDegrees(-self.m_pigeon2.get_yaw())
+            else Rotation2d.fromDegrees(-self.m_pigeon2.get_yaw().value)
         )
 
     def getGyro(self) -> Pigeon2:
@@ -218,8 +214,7 @@ class Swerve(Subsystem):
         )
         return ChassisSpeeds.discretize(speeds, constants.LOOP_TIME_SEC)
 
-    @overload
-    def setChassisSpeeds(self, chassisSpeeds: ChassisSpeeds, isOpenloop: bool):
+    def setChassisSpeeds(self, chassisSpeeds: ChassisSpeeds, isOpenloop: bool = False):
         """
         sets the ChassisSpeeds to drive the robot. You can use predefined methods such as `robotSpeeds` or create a new ChassisSpeeds object.
 
@@ -240,16 +235,16 @@ class Swerve(Subsystem):
         for mod in self.m_swerveModules:
             mod.set(swerveModuleStates[mod.getModuleNumber()], isOpenloop)
 
-    @overload
-    def setChassisSpeeds(self, chassisSpeeds: ChassisSpeeds):
-        """
-        sets the ChassisSpeeds to drive the robot. It defaults to closed loop control.
-        - Used by AutoBuilder.
+    # @overload
+    # def setChassisSpeeds(self, chassisSpeeds: ChassisSpeeds):
+    #     """
+    #     sets the ChassisSpeeds to drive the robot. It defaults to closed loop control.
+    #     - Used by AutoBuilder.
 
-        Parameters:
-        - `chassisSpeeds`: The ChassisSpeeds to generate states for.
-        """
-        self.setChassisSpeeds(chassisSpeeds, False)
+    #     Parameters:
+    #     - `chassisSpeeds`: The ChassisSpeeds to generate states for.
+    #     """
+    #     self.setChassisSpeeds(chassisSpeeds, False)
 
     def setNeutralModes(self, driveMode: NeutralModeValue, steerMode: NeutralModeValue):
         """sets the neutral mode of the motors.

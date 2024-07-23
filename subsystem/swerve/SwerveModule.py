@@ -71,13 +71,13 @@ class SwerveModule:
         self.m_angleOffset = constants.angleOffset
 
         # Angle Encoder Config
-        self.m_angleEncoder = CANcoder(constants.encoderID(), Ports.CAN_BUS_NAME)
+        self.m_angleEncoder = CANcoder(constants.encoderID, Ports.CAN_BUS_NAME)
         self.configAngleEncoder()
 
-        self.m_steerMotor = TalonFX(constants.steerMotorID(), Ports.CAN_BUS_NAME)
+        self.m_steerMotor = TalonFX(constants.steerMotorID, Ports.CAN_BUS_NAME)
         self.configSteerMotor()
 
-        self.m_driveMotor = TalonFX(constants.driveMotorID(), Ports.CAN_BUS_NAME)
+        self.m_driveMotor = TalonFX(constants.driveMotorID, Ports.CAN_BUS_NAME)
         self.configDriveMotor()
 
         self.m_drivePosition = self.m_driveMotor.get_position()

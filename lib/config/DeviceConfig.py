@@ -121,7 +121,7 @@ class DeviceConfig:
         )
         ErrorChecker.configureDevice(
             deviceConfig,
-            name + " " + motor.device_id + " version " + motor.get_version().value,
+            f"{name} {motor.device_id} version {motor.get_version().value}",
             True,
         )
 
@@ -143,7 +143,7 @@ class DeviceConfig:
         )
         ErrorChecker.configureDevice(
             deviceConfig,
-            name + " " + encoder.device_id + " version " + encoder.get_version().value,
+            f"{name} {encoder.device_id} version {encoder.get_version().value}",
             True,
         )
 
@@ -167,7 +167,7 @@ class DeviceConfig:
         )
         ErrorChecker.configureDevice(
             deviceConfig,
-            name + " " + pigeon.device_id + " version " + pigeon.get_version().value,
+            f"{name} {pigeon.device_id} version {pigeon.get_version().value}",
             True,
         )
 

@@ -1,2 +1,2 @@
-from DeviceConfig import DeviceConfig
-from ErrorChecker import ErrorChecker, DeviceConfiguration
+from .DeviceConfig import DeviceConfig
+from .ErrorChecker import ErrorChecker, DeviceConfiguration
