@@ -33,7 +33,8 @@ class Ports:
 
 
 class ShuffleboardConstants:
-    pass
+    # For updating values like PID from Shuffleboard
+    UPDATE_SWERVE = True
 
 
 class SwerveConstants:

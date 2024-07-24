@@ -7,7 +7,7 @@ from robotContainer import RobotContainer
 
 
 class Robot(TimedRobot):
-    autonomousCommand: Command
+    autonomousCommand: Command = None
     robotContainer: RobotContainer
 
     coastTime = Timer()
@@ -16,10 +16,17 @@ class Robot(TimedRobot):
         # Instantiate our RobotContainer. This will perform all our button bindings,
         # and put our autonomous chooser on the dashboard.
         self.robotContainer = RobotContainer()
-        self.autonomousCommand = None
 
     def robotPeriodic(self) -> None:
         CommandScheduler.getInstance().run()
+
+    def autonomousInit(self) -> None:
+        self.autonomousCommand = self.robotContainer.getAutonomousCommand()
+        if self.autonomousCommand is not None:
+            self.autonomousCommand.schedule()
+
+    def autonomousPeriodic(self) -> None:
+        pass
 
     def teleopInit(self) -> None:
         if self.autonomousCommand is not None:
@@ -30,12 +37,6 @@ class Robot(TimedRobot):
         )
 
     def teleopPeriodic(self) -> None:
-        pass
-
-    def autonomousInit(self) -> None:
-        pass
-
-    def autonomousPeriodic(self) -> None:
         pass
 
     def testInit(self) -> None:
