@@ -38,7 +38,7 @@ class COTSFalconSwerveConstants:
         # 21.42 : 1
         angleGearRatio = (150.0 / 7.0) / 1.0
 
-        angleKP = 100.0
+        angleKP = 1.0
         angleKI = 0.0
         angleKD = 0.0
         angleKF = 0.0
