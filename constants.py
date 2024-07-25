@@ -165,10 +165,10 @@ class ModuleConstants:
         def toString(self) -> str:
             return self.name
 
-    MODULE_0 = SwerveModuleConstants(2, 3, 11, Rotation2d(-0.359))  # ROBOT SPECIFIC
+    MODULE_0 = SwerveModuleConstants(2, 3, 11, Rotation2d(-0.361083984375))  # ROBOT SPECIFIC
 
-    MODULE_1 = SwerveModuleConstants(8, 9, 14, Rotation2d(-0.735))  # ROBOT SPECIFIC
+    MODULE_1 = SwerveModuleConstants(8, 9, 14, Rotation2d(-0.7451171875))  # ROBOT SPECIFIC
 
-    MODULE_2 = SwerveModuleConstants(4, 5, 12, Rotation2d(-0.187))  # ROBOT SPECIFIC
+    MODULE_2 = SwerveModuleConstants(4, 5, 12, Rotation2d(-0.184814453125))  # ROBOT SPECIFIC
 
-    MODULE_3 = SwerveModuleConstants(6, 7, 13, Rotation2d(-0.662))  # ROBOT SPECIFIC
+    MODULE_3 = SwerveModuleConstants(6, 7, 13, Rotation2d(-0.66552734375))  # ROBOT SPECIFIC
